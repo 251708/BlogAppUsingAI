@@ -1,0 +1,45 @@
+import { useState } from "react";
+
+export default function CategoryBar() {
+  const blogCategories = [
+    { id: 1, name: "Tech" },
+    { id: 2, name: "Travel" },
+    { id: 3, name: "Food" },
+    { id: 4, name: "Lifestyle" }
+  ];
+
+  const [active, setActive] = useState(null);
+
+  return (
+    <nav aria-label="Blog categories">
+      <ul className="flex gap-2">
+        {blogCategories.map((category) => (
+          <li key={category.id} className="relative">
+            <button
+              type="button"
+              onClick={() => setActive(category.id)}
+              className={`px-3 py-1 rounded transition ${
+                active === category.id
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 hover:bg-gray-300"
+              }`}
+            >
+              {category.name}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
+
+Step 3: Explain What You Did (Interview Style)
+
+Unique keys: “I changed key={item} to key={category.id} to ensure unique and stable keys.”
+
+Accessibility: “I wrapped the buttons inside <nav> and <ul> for semantic HTML, so screen readers recognize it as navigation.”
+
+Interactivity: “I added useState to track the active category. When a button is clicked, it updates state and applies conditional styling.”
+
+User experience: “I added hover and active styles with Tailwind so users can see feedback when they interact.”
